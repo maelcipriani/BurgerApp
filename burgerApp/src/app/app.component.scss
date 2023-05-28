@@ -1,0 +1,201 @@
+nav {
+  li {
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 2px;
+    position: relative;
+
+    &:not(:nth-of-type(3))::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #fff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &:not(.active) {
+    color: #fff;
+
+    img {
+      filter: invert(100%);
+    }
+  }
+
+  &.active {
+    li {
+      &:not(:nth-of-type(3))::after {
+        background-color: #000;
+      }
+    }
+  }
+}
+
+.background-text {
+  font-size: 12rem;
+  line-height: 10rem;
+}
+
+.burgers {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 1) 0px 18px 36px -18px inset;
+  background-image: url("../assets/wood_bg.png");
+  background-size: contain;
+
+  .img-container {
+    width: 22%;
+    margin: -30px;
+    z-index: 0;
+    position: relative;
+
+    button {
+      left: calc(50% - 12px);
+      top: calc(40% + 50px);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: -35%;
+        left: -35%;
+        width: 170%;
+        height: 170%;
+        background: transparent;
+        border: 1px solid #fff;
+        border-radius: 100%;
+        animation: button-circle 3s ease-in-out forwards infinite;
+      }
+
+      &:hover + img {
+        filter: drop-shadow(5px 5px 10px #000) brightness(1.2);
+        transform: scale(1.1);
+        z-index: 2;
+      }
+    }
+
+    @keyframes button-circle {
+      //create a circle around a button, then shrink it to the button size
+      0% {
+        transform: scale(0.5);
+      }
+      50% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0.5);
+      }
+    }
+
+    &:nth-of-type(2) {
+      width: 35%;
+      z-index: 1;
+    }
+
+    &:has(img:hover, button:hover) {
+      z-index: 2;
+    }
+
+    > img {
+      filter: drop-shadow(5px 5px 10px #000);
+      transition: all 0.3s ease-in-out;
+      width: 100%;
+
+      &:nth-of-type(2) {
+        margin-top: 0;
+      }
+
+      &:hover {
+        filter: drop-shadow(5px 5px 10px #000) brightness(1.2);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.menu-btn {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  text-shadow: 1px 1px 2px black;
+  font-weight: 500;
+  box-shadow: rgba(3, 3, 25, 0.8) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.8) 0px 18px 36px -18px inset,
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  &::after {
+    transition: all 0.4s ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    display: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  &:hover {
+    color: #000;
+    text-shadow: none;
+    &::after {
+      z-index: -1;
+      left: 0;
+      background-color: #eabf22;
+    }
+  }
+}
+
+.details {
+  transition: all 0.3s ease-in-out;
+  &.active {
+    top: 0;
+
+    .background-text {
+      span {
+        animation: slideIn 0.2s ease-in-out forwards;
+      }
+      @for $i from 1 through 4 {
+        span:nth-child(#{$i}n) {
+          animation-delay: #{$i * 0.2}s;
+        }
+      }
+    }
+  }
+
+  .background-text {
+    overflow: hidden;
+    span {
+      transform: translateX(-100%);
+    }
+    font-size: 10rem;
+    line-height: 8rem;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .next-burger {
+    position: absolute;
+    top: calc(50% - 8px);
+    right: 0;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+      rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+      rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+}

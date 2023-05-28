@@ -1,0 +1,209 @@
+<div class="relative w-full h-screen flex flex-col">
+  <nav
+    class="px-96 py-6 absolute top-0 left-0 w-full z-50"
+    [class.active]="displayBurgerDetails"
+  >
+    <ul class="flex justify-around">
+      <li>Home</li>
+      <li>About</li>
+      <li class="flex gap-2" (click)="closeBurgerDetails()">
+        <img class="w-5 text-white" src="assets/burger_logo.svg" alt="" />
+        <div class="flex">
+          <span>burger</span><span class="text-yellow_text">app</span>
+        </div>
+      </li>
+      <li>Contact</li>
+      <li class="flex gap-2 items-center">
+        Menu
+        <div
+          class="rounded-full flex items-center justify-center bg-yellow_text w-4 h-4"
+        >
+          <i class="fa-solid fa-caret-down text-black"></i>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div
+    class="bg-dark_background h-2/3 w-full relative overflow-hidden flex items-center justify-center"
+  >
+    <div
+      class="absolute flex flex-col top-12 left-0 font-big_text background-text w-full items-center"
+    >
+      <span class="text-background_text">FALL IN LOVE</span>
+      <span class="text-background_text">FALL IN LOVE</span>
+      <span class="text-background_text">FALL IN LOVE</span>
+      <span class="text-background_text">FALL IN LOVE</span>
+    </div>
+    <div class="flex flex-col z-10 items-center text-center">
+      <div class="text-7xl font-big_text flex flex-col">
+        <span class="text-white">Fall in Love</span
+        ><span class="text-yellow_text">With Our Burgers</span>
+      </div>
+      <span class="text-white m-4 text-sm">
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem <br />
+        accusantium doloremque laudantium, totam rem aperiam </span
+      ><button
+        class="px-4 py-2 border-yellow_text text-yellow_text rounded-sm border-2 bg-transparent drop-shadow-xl menu-btn"
+      >
+        View Menu
+      </button>
+    </div>
+  </div>
+
+  <div class="burgers bg-light_background h-1/3 w-full relative">
+    <div
+      class="flex items-center justify-center px-20 absolute -bottom-8 left-0"
+    >
+      <div *ngFor="let burger of burgers; let i = index" class="img-container">
+        <button
+          (click)="selectBurger(i)"
+          class="rounded-full flex items-center justify-center bg-white w-6 h-6 absolute z-10"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <img class="drop-shadow-2xl" [src]="burger.burgerImage" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!--Burger Details-->
+  <div
+    class="details h-screen w-full flex absolute top-full left-0 z-40 bg-white py-28 px-20"
+    [class.active]="displayBurgerDetails"
+  >
+    <div class="w-1/2">
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col">
+          <span class="text-7xl font-big_text flex flex-col text-black">{{
+            selectedBurger.burgerName
+          }}</span
+          ><span
+            class="text-7xl font-big_text flex flex-col text-yellow_text"
+            >{{ selectedBurger.burgerSurName }}</span
+          >
+          <!-- <span class="mt-4 text-md"
+            >Sed ut perspiciatis unde omnis iste natus <br />
+            error sit voluptatem
+          </span> -->
+        </div>
+        <div class="flex font-medium">
+          <div class="flex flex-col w-1/2 gap-6">
+            <span><i class="fa-solid fa-bacon"></i> Triple Bacon</span
+            ><span> <i class="fa-solid fa-drumstick-bite"></i> Triple Meat</span
+            ><span
+              ><i class="fa-solid fa-cheese"></i> Triple Cheddar Cheese</span
+            >
+          </div>
+          <div class="flex flex-col w-1/2 gap-6">
+            <span><i class="fa-solid fa-leaf"></i> Sliced Tomato</span
+            ><span><i class="fa-solid fa-wine-bottle"></i> BBQ Sauce</span
+            ><span><i class="fa-solid fa-bread-slice"></i> Integral Bread</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 w-5/6">
+          <div class="flex gap-2">
+            <div
+              class="flex justify-between flex-grow py-4 px-12 gap-4 rounded-md bg-yellow_text"
+            >
+              <div class="flex flex-col gap-2">
+                <span class="text-sm"
+                  >Add french <br />
+                  Fries to Order</span
+                >
+                <div class="flex gap-3 items-center">
+                  <span class="font-semibold">$9.99</span>
+                  <i class="fa-solid fa-shop"></i>
+                </div>
+              </div>
+              <div class="h-full w-3/12 rounded-full bg-gray-900 relative">
+                <img
+                  src="assets/french-fries.png"
+                  class="absolute w-auto object-cover overflow-visible"
+                  style="height: 110%"
+                />
+              </div>
+            </div>
+            <div
+              class="flex justify-between text-white flex-grow py-4 px-12 gap-4 rounded-md bg-gray_card"
+            >
+              <div class="flex flex-col gap-2">
+                <span class="text-sm"
+                  >Add chicken <br />
+                  Nuggets to Order</span
+                >
+                <div class="flex gap-3 items-center">
+                  <span class="font-semibold">$9.99</span>
+                  <i class="fa-solid fa-shop"></i>
+                </div>
+              </div>
+              <div class="h-full w-3/12 rounded-full bg-yellow_text relative">
+                <img
+                  src="assets/chicken-nuggets.png"
+                  class="absolute w-auto object-cover overflow-visible"
+                  style="height: 110%"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex rounded-md w-full">
+            <div
+              class="bg-yellow_text w-1/3 rounded-tl-md rounded-bl-md flex items-center justify-center"
+            >
+              <img
+                src="assets/burger-1.png"
+                class="object-cover w-7/12"
+                alt=""
+              />
+            </div>
+            <div
+              class="bg-gray_card w-2/3 rounded-tr-md rounded-br-md flex flex-col justify-center p-4 text-white gap-3"
+            >
+              <span class="font-big_text text-xl">Double Crispy Chicken</span>
+              <div class="flex gap-4">
+                <div class="flex gap-2">
+                  <div
+                    class="rounded-full flex items-center justify-center bg-yellow_text w-6 h-6"
+                  >
+                    <i class="fa-solid fa-bars text-black"></i>
+                  </div>
+                  <span> View Details </span>
+                </div>
+                <span class="font-medium">$ 18</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative w-1/2 flex items-center flex-col">
+      <button
+        class="next-burger px-4 py-2 rounded-full bg-gray_card border-2 border-yellow_text shadow-xl text-yellow_text"
+        (click)="selectNextBurger()"
+      >
+        Burger suivant <i class="fa-solid fa-hand-point-right"></i>
+      </button>
+      <div
+        class="absolute flex flex-col top-0 left-0 -z-10 font-big_text background-text w-full items-center justify-center opacity-80"
+      >
+        <span class="text-light_background">BURGER</span>
+        <span class="text-light_background">BURGER</span>
+        <span class="text-light_background">BURGER</span>
+        <span class="text-light_background">BURGER</span>
+      </div>
+
+      <span class="font-big_text text-7xl"
+        >${{ selectedBurger.burgerPrice }}</span
+      ><img
+        [src]="selectedBurger.burgerImage"
+        class="w-4/6 -m-4"
+        alt=""
+      /><button
+        class="px-4 py-2 bg-yellow_text rounded-sm bg-transparent drop-shadow-xl"
+      >
+        <i class="fa-solid fa-cart-shopping"></i> Buy Burger
+      </button>
+    </div>
+  </div>
+</div>
